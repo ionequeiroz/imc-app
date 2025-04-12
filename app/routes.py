@@ -9,15 +9,17 @@ def index():
         try:
             peso = float(request.form["peso"])
             altura = float(request.form["altura"])
-            imc = round(peso / (altura **2), 2)
-            if imc < 18.5:
-                mensagem = "Abaixo do peso"
-            elif 18.5 <= imc < 25:
-                mensagem = "Peso ideal"
-            elif 25 <= imc < 30:
-                mensagem = "Sbobrepeso"
+            if peso <= 0 or altura <= 0:
+                mensagem = "Peso e altura devem ser maiores que zero"
             else:
-                mensagem = "Obesidade"
-        except:
-            mensagem = "Erro ao calcular IMC"
-    return render_template("index.html", imc=imc,mensagem=mensagem)
+                imc = round(peso / (altura ** 2), 2)
+                if imc < 18.5:
+                    mensagem = "Abaixo do peso"
+                elif 18.5 <= imc < 25:
+                    mensagem = "Peso ideal"
+                elif 25 <= imc < 30:
+                    mensagem = "Sobrepeso"
+                else:
+                    mensagem = "Obesidade"
+        except ValueError:
+            mensagem = "Insira valores numéricos válidos para peso e altura"
