@@ -1,5 +1,4 @@
-
-name : CI
+name: CI
 
 on:
   push:
@@ -8,11 +7,11 @@ on:
     branches: [ main ]
 
 jobs:
-  - test:
-       runs-on: ubunto-latest
+  test:
+    runs-on: ubuntu-latest
 
-      steps:
-      - uses: actions/ checkout@v3
+    steps:
+      - uses: actions/checkout@v3
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -23,6 +22,5 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Run test
+      - name: Run tests
         run: pytest
-#        teste 
