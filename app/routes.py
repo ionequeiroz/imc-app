@@ -1,7 +1,8 @@
 from flask import render_template, request
 from app import app
 
-@app.route("/", methods=["GET","POST"])
+
+@app.route("/", methods=["GET", "POST"])
 def index():
     imc = None
     mensagem = ""
@@ -23,3 +24,5 @@ def index():
                     mensagem = "Obesidade"
         except ValueError:
             mensagem = "Insira valores numéricos válidos para peso e altura"
+
+    return render_template("index.html", imc=imc, mensagem=mensagem)
