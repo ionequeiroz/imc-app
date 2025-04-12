@@ -5,9 +5,8 @@ on:
     branches: [main]
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -17,8 +16,13 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Instalar dependências
+      - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Simular deploy
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build  
+    steps:
+      - name: Simulate deploy
         run: echo "Deploy simulado com sucesso!"
+
