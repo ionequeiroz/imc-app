@@ -27,7 +27,7 @@ def test_index_post_sem_peso():
 
 def test_index_post_sem_altura():
     client = app.test_client()
-    response = client.post('/', data={'peso': '70'})
+    response = client.post('/', data={'peso': '70'}) #teste Discord
     assert response.status_code == 200
     assert b"Por favor, preencha todos os campos" in response.data
 
