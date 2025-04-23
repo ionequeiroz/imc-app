@@ -1,18 +1,17 @@
-name: Enviar alerta para o Discord
+name: Discord
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    types: [closed]
+  - push 
 
 jobs:
-  discord_alert:
+  discord:
     runs-on: ubuntu-latest
     steps:
-      - name: Enviar mensagem para o Discord
-        uses: Ilshidur/action-discord@master
+      - uses: actions/checkout@v4
+
+      - name: Run Discord Webhook
+        uses: Sniddl/discord-commits@v1.6
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          message: " Novo push ou merge detectado no repositório!"
+          template: "avatar-with-link"
+          include-extras: true
