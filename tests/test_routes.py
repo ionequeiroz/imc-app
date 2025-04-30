@@ -11,7 +11,7 @@ def test_index_get():
     assert response.status_code == 200
 
 
-def test_index_post():
+def test_index_post_valido():
     client = app.test_client()
     response = client.post('/', data={"peso": "70", "altura": "1.75"})
     assert response.status_code == 200
